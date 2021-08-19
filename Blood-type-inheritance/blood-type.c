@@ -16,6 +16,7 @@ person;
 
 // Define macro(s)
 #define ERROR_MSG "Usage: ./main GENERATION_SIZE\n"
+#define FILE_ERR "Couldn't open the selected file\n"
 
 // Create func prototypes
 person *create_family(int generations);
@@ -113,6 +114,11 @@ void writeToRTextFile(person *p, int generation)
 
     // Receive newly reset txt file and append to it
     FILE *outputFile = resetTextFile(PATH);
+    if (outputFile == NULL)
+    {
+        printf(FILE_ERR);
+        return 1;
+    }
 
     for (int i = 0; i < generation * 5; i++)
     {
@@ -134,8 +140,24 @@ FILE *resetTextFile(string path)
     FILE *f = NULL;
     f = fopen(path, "w");
 
+    // Handle error
+    if (f == NULL)
+    {
+        // Abort the process
+        printf(FILE_ERR);
+        return 1;
+    }
+
     // Create text file for output
     f = fopen(path, "a");
+
+    // Handle error
+    if (f == NULL)
+    {
+        // Abort the process
+        printf(FILE_ERR);
+        return 1;
+    }
 
     return f;
 }
