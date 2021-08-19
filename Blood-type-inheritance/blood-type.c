@@ -20,7 +20,7 @@ person;
 
 // Create func prototypes
 person *create_family(int generations);
-void writeToRTextFile(person *p, int generation);
+void writeToRTextFile(person *p, FILE *output, int generation);
 FILE *resetTextFile(string path);
 char generateRandomAllele(void);
 void freeAllocatedMemory(person *p);
@@ -41,8 +41,19 @@ int main(int argc, string argv[])
     // Create the familz tree (recursive base)
     person *p = create_family(generation);
 
+    // Define default location PATH
+    string PATH = "output/blood-inheritance.txt";
+
+    // Receive newly reset txt file and append to it
+    FILE *outputFile = resetTextFile(PATH);
+    if (outputFile == NULL)
+    {
+        printf(FILE_ERR);
+        return 1;
+    }
+
     // Write the analogy to a local txt file
-    writeToRTextFile(p, 0);
+    writeToRTextFile(p, outputFile, 0);
 
     // Free memory to prevent memory leaks
     freeAllocatedMemory(p);
@@ -101,7 +112,7 @@ void freeAllocatedMemory(person *p)
 }
 
 // Create function to write the progress to a local txt file
-void writeToRTextFile(person *p, int generation)
+void writeToRTextFile(person *p, FILE *output, int generation)
 {
     // Define a base case
     if (p == NULL)
@@ -109,34 +120,23 @@ void writeToRTextFile(person *p, int generation)
         return;
     }
 
-    // Define default location PATH
-    string PATH = "output/blood-inheritance.txt";
-
-    // Receive newly reset txt file and append to it
-    FILE *outputFile = resetTextFile(PATH);
-    if (outputFile == NULL)
-    {
-        printf(FILE_ERR);
-        return 1;
-    }
-
     for (int i = 0; i < generation * 5; i++)
     {
-        fputc(' ', outputFile);
+        fputc(' ', output);
     }
 
     // Write to the text file
-    fprintf(outputFile, "Generation no. %i type: %c%c\n", generation, p->alleles[0], p->alleles[1]);
+    fprintf(output, "Generation no. %i type: %c%c\n", generation, p->alleles[0], p->alleles[1]);
 
     for (int i = 0; i <= 1; i++)
     {
         // Recursively call the function until NULL is reached (for both parents' iters)
-        writeToRTextFile(p->parents[i], generation + 1);
+        writeToRTextFile(p->parents[i], output, generation + 1);
     }
 }
 FILE *resetTextFile(string path)
 {
-    // Reset ouput txt file
+    // Reset output txt file
     FILE *f = NULL;
     f = fopen(path, "w");
 
@@ -145,7 +145,7 @@ FILE *resetTextFile(string path)
     {
         // Abort the process
         printf(FILE_ERR);
-        return 1;
+        return f;
     }
 
     // Create text file for output
@@ -156,7 +156,7 @@ FILE *resetTextFile(string path)
     {
         // Abort the process
         printf(FILE_ERR);
-        return 1;
+        return f;
     }
 
     return f;
