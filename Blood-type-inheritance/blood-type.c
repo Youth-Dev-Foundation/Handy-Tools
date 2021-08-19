@@ -57,6 +57,9 @@ int main(int argc, string argv[])
 
     // Free memory to prevent memory leaks
     freeAllocatedMemory(p);
+
+    // Close opened local files
+    fclose(outputFile);
     return 0;
 }
 
