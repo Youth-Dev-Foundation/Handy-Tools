@@ -1,29 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
+// Include dependencies stored in a header file
+#include "dependencies.h"
 
-// Remap type 'char*' to 'string'
-typedef char* string;
-
-// Create a custom data type for each person (with 2 parents and 2 respective alleles)
-typedef struct person
-{
-    struct person *parents[2];
-    char alleles[2];
-}
-person;
-
-// Define macro(s)
-#define ERROR_MSG "Usage: ./main GENERATION_SIZE\n"
-#define FILE_ERR "Couldn't open the selected file\n"
-
-// Create func prototypes
-person *create_family(int generations);
-void writeToRTextFile(person *p, FILE *output, int generation);
-FILE *resetTextFile(string path);
-char generateRandomAllele(void);
-void freeAllocatedMemory(person *p);
+// Include prototypes header file with dependencies
+#include "prototypes.h"
 
 int main(int argc, string argv[])
 {
