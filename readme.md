@@ -3,7 +3,7 @@
 ## Blood Inheritance
 Two alleles determine a person's blood type (i.e., different forms of a gene). A, B, and O are the three potential alleles, and each person possesses two of them (possibly the same, possibly different). Each parent distributes one of their two blood type alleles to their child at random. OO, OA, OB, AO, AA, AB, BO, BA, and BB are the possible blood type combinations.
 
-## Execution
+## Execution (default)
 
 ```Shell
 $ make /Blood-type-inheritance/blood-type
@@ -11,6 +11,21 @@ $ make /Blood-type-inheritance/blood-type
 
 ```Shell
 $ ./Blood-type-inheritance/blood-type $GENERATION_SIZE
+```
+
+## Execution (advanced)
+Automated makefiles to seamlessly compile and run the program.
+
+### 1. Shell script
+
+```Shell
+$ sh makefile.sh $GENERATION_SIZE
+```
+
+### 2. Makefile
+
+```Shell
+$ make inheritance gen=$GENERATION_SIZE
 ```
 
 ### Print out the output file's content
