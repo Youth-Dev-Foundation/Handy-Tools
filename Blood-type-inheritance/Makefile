@@ -1,4 +1,9 @@
+# Define main function, call clang and execute file
+define DEFAULT_RUN
+	clang blood-type.c -o blood-type
+	./blood-type $(1)
+endef
+
 # Create 'Makefile' called inheritance
 inheritance:
-	clang blood-type.c -o blood-type
-	./blood-type $(gen)
+	$(call DEFAULT_RUN, $(gen))
