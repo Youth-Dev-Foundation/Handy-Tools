@@ -1,14 +1,14 @@
 # Handy Tools
 
 ## Blood Inheritance
-Two alleles determine a person's blood type (i.e., different forms of a gene). A, B, and O are the three potential alleles, and each person possesses two of them (possibly the same, possibly different). Each parent distributes one of their two blood type alleles to their child at random. OO, OA, OB, AO, AA, AB, BO, BA, and BB are the possible blood type combinations.
+Two alleles determine a person's blood type (i.e., different forms of a gene). A, B, and O are the three potential alleles, and each person possesses two of them (possibly the same, possibly different). Each parent distributes one of their two blood type alleles to their child at random. OO, OA, OB, AO, AA, AB, BO, BA, and BB are the possible blood type combinations. [[1]][WIKI]
 
 ## Installation
 ```Shell
 $ git clone https://github.com/Youth-Dev-Foundation/Handy-Tools.git
 ```
 
-[__Zip__][ZIP]
+[__Zip Download__][ZIP]
 
 ## Execution (default)
 
@@ -56,3 +56,4 @@ __NOTE:__ using file's [_relative path_][ID1] by default.
 [ID1]: https://desktop.arcgis.com/en/arcmap/10.3/tools/supplement/pathnames-explained-absolute-relative-unc-and-url.htm
 [ID2]: https://www.geeksforgeeks.org/command-line-arguments-in-c-cpp/
 [ZIP]: https://github.com/Youth-Dev-Foundation/Handy-Tools/archive/refs/heads/main.zip
+[WIKI]: https://www.bswhealth.com/patient-tools/blood-center/blood-type-genetics-and-compatibility
